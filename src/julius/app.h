@@ -17,6 +17,9 @@
 
 /* recogloop.c */
 void main_recognition_stream_loop(Recog *recog);
+void init_event_recognition_stream_loop(Recog *recog);
+int main_event_recognition_stream_loop();
+void end_event_recognition_stream_loop();
 
 /* module.c */
 int module_send(int sd, char *fmt, ...);

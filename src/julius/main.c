@@ -25,6 +25,8 @@
 
 #include "app.h"
 
+#include <emscripten.h>
+
 boolean separate_score_flag = FALSE;
 boolean outfile_enabled = FALSE;
 
@@ -79,7 +81,7 @@ main(int argc, char *argv[])
   Jconf *jconf;
 
   /* inihibit system log output (default: stdout) */
-  //jlog_set_output(NULL);
+  // jlog_set_output(NULL);
   /* output system log to a file */
   // FILE *fp = fopen(logfile, "w"); jlog_set_output(fp);
 
@@ -227,15 +229,16 @@ main(int argc, char *argv[])
     }
   }
 
-  /* enter recongnition loop */
-  main_recognition_stream_loop(recog);
+  // TODO: Bubble up the USE_WEBAUDIO definition
+  /* initialize recognition loop */
+  init_event_recognition_stream_loop(recog);
+  /* kick off event-based looping */
+  EM_ASM( setTimeout(Module.cwrap('main_event_recognition_stream_loop'), 0); );
 
-  /* end proc */
-  if (is_module_mode()) module_disconnect();
+  /* the remainder of the ending calls (i.e. j_recog_free) have been moved to end_recognition_stream_loop */
 
-  /* release all */
-  j_recog_free(recog);
-
+  /* close files immediately to avoid leaks (this breaks file analysis) */
   if (logfile) fclose(fp);
+
   return(0);
 }

@@ -12,7 +12,7 @@ ac_help=
 ac_default_prefix=/usr/local
 # Any additions from configure.in:
 ac_help="$ac_help
-  --with-mictype=TYPE     specify mic I/O (oss|alsa|freebsd|coreaudio|sol2|sun4|irix|esd|sp|portaudio|pa-oss|pa-alsa|pa-winmm|pa-dsound|pulseaudio)"
+  --with-mictype=TYPE     specify mic I/O (oss|alsa|freebsd|coreaudio|sol2|sun4|irix|esd|sp|portaudio|pa-oss|pa-alsa|pa-winmm|pa-dsound|pulseaudio|webaudio)"
 ac_help="$ac_help
   --with-netaudio-dir=DIR DatLink/NetAudio include/lib are in DIR"
 ac_help="$ac_help
@@ -2964,6 +2964,15 @@ EOF
 #	AC_DEFINE(USE_MIC)
 #	SOUNDLIB="-L/usr/opt/MME242/lib -lmme")
 #	;;
+    webaudio)
+  aldesc="JavaScript Web Audio API"
+  ADINOBJ="$ADINOBJ src/adin/adin_mic_webaudio.o"
+  cat >> confdefs.h <<\EOF
+#define USE_MIC 1
+#define USE_WEBAUDIO 1
+EOF
+
+  ;;
     *)
 	aldesc="no support"
 	{ echo "configure: error: mictype not supported, or specified type not exist" 1>&2; exit 1; }

@@ -16,7 +16,7 @@ LIBSENT_VERSION=4.3.1
 dnl Checks for options
 # specify mic type
 AC_ARG_WITH(mictype,
-[  --with-mictype=TYPE     specify mic I/O (oss|alsa|freebsd|coreaudio|sol2|sun4|irix|esd|sp|portaudio|pa-oss|pa-alsa|pa-winmm|pa-dsound|pulseaudio)],,with_mictype=auto)
+[  --with-mictype=TYPE     specify mic I/O (oss|alsa|freebsd|coreaudio|sol2|sun4|irix|esd|sp|portaudio|pa-oss|pa-alsa|pa-winmm|pa-dsound|pulseaudio|webaudio)],,with_mictype=auto)
 
 # NetAudio support
 AC_ARG_WITH(netaudio-dir,
@@ -517,6 +517,12 @@ case $altype in
 #	AC_DEFINE(USE_MIC)
 #	SOUNDLIB="-L/usr/opt/MME242/lib -lmme")
 #	;;
+    webaudio)
+  aldesc="JavaScript Web Audio API"
+  ADINOBJ=src/adin/adin_mic_webaudio.o
+  AC_DEFINE(USE_MIC)
+  AC_DEFINE(USE_WEBAUDIO)
+  ;;
     *)
 	aldesc="no support"
 	AC_MSG_ERROR([mictype not supported, or specified type not exist])
