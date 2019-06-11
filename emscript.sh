@@ -27,7 +27,7 @@ which emcc ||        { echo 'Missing emcc';
 mkdir -p src
 mkdir -p bin
 mkdir -p js
-pushd src
+cd src
 
 # Grab the sourcecode (version 4.3.1)
 cvs -z3 -d:pserver:anonymous@cvs.sourceforge.jp:/cvsroot/julius co -r release_4_3_1 julius4
@@ -37,7 +37,7 @@ cp -r julius4 emscripted
 # Build local executables
 # - this will be used for generating custom grammars
 #   and producing binary inputs to reduce network usage
-pushd julius4
+cd julius4
 ./configure --disable-pthread
 make $MK_ARG
 find . -type f -perm +111 -not -regex '.*[sh|in]$' -not -regex '.*config.*' -exec cp -f {} ../../bin \;
