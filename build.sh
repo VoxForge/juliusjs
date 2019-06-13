@@ -22,6 +22,7 @@ cd ..
 cp -f build/bin/julius.js.mem build/bin/julius.bc
 
 # error: undefined symbol: popen; therefore use: '-s ERROR_ON_UNDEFINED_SYMBOLS=0'
+# see: https://github.com/emscripten-core/emscripten/issues/7302
 cd dist
 emcc -O3 ../build/bin/julius.bc -o recognizer.js  \
 -L../include/zlib -lz \
