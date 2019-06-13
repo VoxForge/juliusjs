@@ -116,8 +116,7 @@ src/util/aptree.o \
 src/util/readfile.o \
 src/util/gzfile.o \
 src/util/mystrtok.o \
-# run configure to update Makefile
-# !!!!!! src/util/strcasecmp.o \
+src/util/strcasecmp.o \
 src/util/confout.o \
 src/util/qsort.o \
 src/voca/init_voca.o \
