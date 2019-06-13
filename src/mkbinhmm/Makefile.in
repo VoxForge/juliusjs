@@ -37,13 +37,13 @@ install.bin: mkbinhmm@EXEEXT@ mkbinhmmlist@EXEEXT@
 
 clean:
 	$(RM) mkbinhmm.o mkbinhmmlist.o
-	$(RM) *~ core
+	$(RM) *.o *~ core *.js.mem
 	$(RM) mkbinhmm mkbinhmm.exe
 	$(RM) mkbinhmmlist mkbinhmmlist.exe
 
 distclean:
 	$(RM) mkbinhmm.o mkbinhmmlist.o
-	$(RM) *~ core
+	$(RM) *.o *~ core *.js.mem
 	$(RM) mkbinhmm mkbinhmm.exe
 	$(RM) mkbinhmmlist mkbinhmmlist.exe
 	$(RM) Makefile

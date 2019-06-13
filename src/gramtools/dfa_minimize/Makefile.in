@@ -40,10 +40,10 @@ install.bin: $(TARGET)
 ############################################################
 
 clean:
-	$(RM) *.o *~ core
+	$(RM) *.o *~ core *.js.mem
 	$(RM) $(TARGET) $(TARGET).exe
 
 distclean:
-	$(RM) *.o *~ core
+	$(RM) *.o *~ core *.js.mem
 	$(RM) $(TARGET) $(TARGET).exe
 	$(RM) Makefile
