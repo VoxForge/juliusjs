@@ -40,8 +40,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-int strcasecmp(char *s1, char *s2);
-int strncasecmp(char *s1, char *s2, size_t n);
+/* int strcasecmp(char *s1, char *s2); */
+/* int strncasecmp(char *s1, char *s2, size_t n); */
+int strcasecmp (const char *, const char *);
+int strncasecmp (const char *, const char *, size_t);
 #ifdef __cplusplus
 }
 #endif

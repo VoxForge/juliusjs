@@ -23,3 +23,6 @@
  */
 
 #include <julius/julius.h>
+
+/* !!!!!! for adintool.c */
+void reset_mfcc(Recog *recog);

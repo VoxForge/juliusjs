@@ -116,7 +116,6 @@ src/util/aptree.o \
 src/util/readfile.o \
 src/util/gzfile.o \
 src/util/mystrtok.o \
-src/util/strcasecmp.o \
 src/util/confout.o \
 src/util/qsort.o \
 src/voca/init_voca.o \
@@ -131,6 +130,9 @@ src/wav2mfcc/wav2mfcc-pipe.o \
 src/wav2mfcc/mfcc-core.o \
 src/wav2mfcc/para.o \
 @EXTRAOBJ@
+
+# !!!!!! removed: src/util/strcasecmp.o \
+
 
 ############################################################
 

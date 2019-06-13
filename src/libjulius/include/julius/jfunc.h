@@ -115,6 +115,11 @@ void j_jconf_free(Jconf *jconf);
 Recog *j_recog_new();
 void j_recog_free(Recog *recog);
 
+/* !!!!!! for jfunct.c */
+boolean j_process_remove(Recog *recog, JCONF_SEARCH *sconf);
+boolean j_process_lm_remove(Recog *recog, JCONF_LM *lmconf);
+/* !!!!!! */
+
 #ifdef __cplusplus
 }
 #endif
