@@ -60,14 +60,15 @@ julius.onrecognition = function(sentence) {
 
 ### Configure your own recognition grammar
 
-In order for JuliusJS to use it, your grammar must follow the [Julius grammar specification](http://julius.sourceforge.jp/en_index.php?q=en_grammar.html). The site includes a tutorial on writing grammars.<br>
-By default, phonemes are defined in `voxforge/hmmdefs`, though you might find [other sites](http://www.boardman.k12.oh.us/bdms/phonological/44Phonemes.pdf) more useful as reference.
+In order for JuliusJS to use it, your grammar must follow the
+[Julius grammar specification](http://julius.sourceforge.jp/en_index.php?q=en_grammar.html).
+The site includes a tutorial on writing grammars.<br>
+By default, phonemes are defined in `voxforge/hmmdefs`,
+though you might find the [VoxForge Tutorial](http://voxforge.org/home/dev/acousticmodels/linux/create/htkjulius/tutorial/data-prep/step-1)
+ more useful as reference.
 
-- Building your own grammar requires the `mkdfa.pl` script and associated binaries, distributed with Julius.
- - _On Mac OS X_
-   - Use `./bin/mkdfa.pl`, included with this repo
- - _On other OS_
-   - Run `emscripten.sh` to populate `bin` with the necessary files
+- Building your own grammar requires the `mkdfa.pl` script and associated
+binaries, distributed with Julius.
 
 1. Write a `yourGrammar.voca` file with words to be recognized
  - The `.voca` file defines "word candidates" and their pronunciations.
@@ -114,22 +115,6 @@ _Both 'path/to/dfa' and 'path/to/dict' must be set to use a custom grammar_
  - A reference to available options can be found in the [JuliusBook](http://julius.sourceforge.jp/juliusbook/en/).
  - Currently, the only supported hidden markov model is from voxforge. The `h` and `hlist` options are unsupported.
 
-## Examples
-
-### Voice Command
-
-_Coming soon..._
-
-### Keyword Spotting (e.g., API integration)
-
-_Coming soon..._
-
-### In the wild
-
-_If you use `JuliusJS` let me know, and I'll add your project to this list (or issue a pull request yourself)._
-
-1. _Coming soon..._
-
 ## Motivation
 
 - Implement speech recognition in...
@@ -147,54 +132,48 @@ _If you use `JuliusJS` let me know, and I'll add your project to this list (or i
    - Voice command
    - Keyword spotting
 
-#### Future goals
-
-- Better sample recognition grammar (_improves out-of-the-box usability_)
-- Examples
-
-## Developers
-
-___Contributions are welcome! See `CONTRIBUTING.md` for guidelines.___
-
 ### Build from source
 
-__You'll need [emscripten](http://kripken.github.io/emscripten-site/), the LLVM to JS compiler, to build this from the C source.__ Once you have that, run `./emscript.sh`. If you are missing other tools, the script will let you know.
-
-As emscript.sh reloads and recompiles static libraries, `./reemscript.sh` is available once you've already run emscript.sh. reemscript.sh will only recompile to JavaScript based on your latest changes. This can also be run with `npm make`.
-
-Additionally, tests <s>are set</s> will be made to run using `npm test`.<br> In the meantime,  a blank page with the JuliusJS library can be served using `npm start`.
+__You'll need [emscripten](http://kripken.github.io/emscripten-site/), the
+LLVM to JS compiler, to build this from the C source.__ Once you have that,
+run `./build.sh`. If you are missing other tools, the script will let you know.
 
 ### Codemap
 
-##### emscript.sh / reemscript.sh
+##### build.sh
 
-These scripts will compile/recompile Julius C source to JavaScript, as well as copy all other necessary files, to the **js** folder.
-
-emscript.sh will also compile binaries, which you can use to create recognition grammars or compile grammars to smaller binary files. These are copied to the **bin** folder.
+These scripts will compile/recompile Julius C source to JavaScript, as well as
+copy all other necessary files, to the **js** folder.
 
 ##### src
 
-This is where the source for Julius will go once emscript.sh is run. emscript.sh will replace certain files in **src/julius4** with those in **src/include** in order to make **src/emscripted**, the files eventually compiled to JavaScript.
+- src/julius/app.h - _the main application header_
+- __src/julius/main.c__ - _the main application_
+- __src/julius/recogloop.c__ - _a wrapper around the recognition loop_
+- src/libjulius/src/adin_cut.c - _interactions with a microphone_
+- src/libjulius/src/m_adin.c - _initialization to Web Audio_
+- __src/libjulius/src/recogmain.c__ - _the main recognition loop_
+- src/libsent/configure[.in] - _configuration to add Web Audio_
+- src/libsent/src/adin/adin_mic_webaudio.c - _input on Web Audio_
 
-- src/include/julius/app.h - _the main application header_
-- __src/include/julius/main.c__ - _the main application_
-- __src/include/julius/recogloop.c__ - _a wrapper around the recognition loop_
-- src/include/libjulius/src/adin_cut.c - _interactions with a microphone_
-- src/include/libjulius/src/m_adin.c - _initialization to Web Audio_
-- __src/include/libjulius/src/recogmain.c__ - _the main recognition loop_
-- src/include/libsent/configure[.in] - _configuration to add Web Audio_
-- src/include/libsent/src/adin/adin_mic_webaudio.c - _input on Web Audio_
-
-_Files in bold were changed to replace a loop with eventing, to simulate multithreading in a Worker._
+_Files in bold were changed to replace a loop with eventing, to simulate
+multithreading in a Worker._
 
 ##### js
 
-The home to the testing server run with `npm start`. Files are copied to this folder from **dist** with emscript.sh and reemscript.sh. If they are modified, they should be commited back to the **dist** folder.
+The home to the testing server run with `npm start`. Files are copied to
+this folder from **dist** with emscript.sh and reemscript.sh. If
+they are modified, they should be commited back to the **dist** folder.
 
 ##### dist
 
-The home for committed copies of the compiled library, as well as the wrappers that make them work: julius.js and worker.js. **dist/listener/converter.js** is the file that actually pipes Web Audio to Julius (the compiled C program).
+The home for committed copies of the compiled library, as well as the wrappers
+that make them work: julius.js and worker.js.
+
+**dist/listener/converter.js** is the file that actually pipes Web Audio to
+Julius (the compiled C program).
 
 ---
 
-*JuliusJS is a port of the "Large Vocabulary Continuous Speech Recognition Engine Julius" to JavaScript*
+*JuliusJS is a port of the "Large Vocabulary Continuous Speech Recognition
+Engine Julius" to JavaScript*
