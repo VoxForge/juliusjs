@@ -16,3 +16,6 @@
 /node_modules/
 autom4te.cache
 **~
+build
+**a.out*
+**.o
