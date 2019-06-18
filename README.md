@@ -22,6 +22,9 @@ $ cd juliusjs/dist
 
 $ python -m SimpleHTTPServer 8080
 
+(Note: On Ubuntu, you may need to add an entry to your /etc/mime.types file:
+    "application/wasm      wasm")
+
 ### from your browser, go to this URL:
 
 > https://localhost:8080
