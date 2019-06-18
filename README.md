@@ -10,16 +10,17 @@ to JavaScript
 
 ## Getting started
 
-run ./build.sh
+### run build script
+
+$ ./build.sh
 
 ## testing
 
-cd juliusjs/dist
+### go to dist folder and start python web server:
 
-from command line:
-
+$ cd juliusjs/dist
 $ python -m SimpleHTTPServer 8080
 
-from browser:
+### from your browser, go to this URL:
 
 > https://localhost:8080
