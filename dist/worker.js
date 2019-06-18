@@ -5,8 +5,7 @@ var setRate;
 var begin = function() { master.postMessage({type: 'begin'}); };
 
 // console polyfill for emscripted Module
-var console = {};
-
+//var console = {};
 importScripts('recognizer.js', 'listener/resampler.js', 'listener/converter.js');
 
 console.log = (function() {
