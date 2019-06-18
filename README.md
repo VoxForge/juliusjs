@@ -8,3 +8,18 @@ to JavaScript
 
 [original source code](https://github.com/zzmp/juliusjs/)
 
+> Getting startedon -m 
+
+run ./build.sh
+
+> testing
+
+cd juliusjs/dist
+
+from command line:
+
+$ python -m SimpleHTTPServer 8080
+
+from browser:
+
+https://localhost:8080
