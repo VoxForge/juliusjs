@@ -102,9 +102,16 @@
           console.info(e.data);
         }
       };
-
-      initializeAudio(this.audio);
-      bootstrap.call(this, pathToDfa, pathToDict, options);
+      
+    // !!!!!!
+    //      initializeAudio(this.audio);
+    //      bootstrap.call(this, pathToDfa, pathToDict, options);
+    document.querySelector('button').addEventListener('click', function() { 
+          initializeAudio(that.audio);
+          bootstrap.call(that, pathToDfa, pathToDict, options);
+    });
+    // !!!!!!
+      
     };
 
     Julius.prototype.onfirstpass = function(sentence) { /* noop */ };
