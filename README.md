@@ -19,6 +19,7 @@ $ ./build.sh
 ### go to dist folder and start python web server:
 
 $ cd juliusjs/dist
+
 $ python -m SimpleHTTPServer 8080
 
 ### from your browser, go to this URL:
